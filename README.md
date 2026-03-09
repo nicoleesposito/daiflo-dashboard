@@ -4,7 +4,7 @@
 Daiflo is a personal productivity dashboard designed to bring essential daily tools into one organized interface. The application allows users to quickly access useful information and manage everyday tasks without switching between multiple apps. Through a clean and responsive layout, users can view current weather conditions, manage a to-do list, read the latest news headlines from RSS feeds, and write quick notes. Daiflo also includes a preferences area where users can manage their profile information and customize settings such as display preferences. The goal of the project is to create a simple, efficient, and user-friendly dashboard that helps users stay informed, organized, and focused throughout their day.
 
 ## Planned Features
-Weather Widget
+Weather Widget <br>
 Displays current weather information for a selected location, including temperature, conditions, and a weather icon.
 
 Todo List <br>
