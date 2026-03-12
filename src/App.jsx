@@ -3,6 +3,7 @@ import { PreferencesProvider } from './context/PreferencesContext'
 import Navbar from './components/layout/Navbar'
 import LandingPage from './pages/LandingPage/LandingPage'
 import Dashboard from './components/layout/Dashboard'
+import Settings from './pages/Settings/Settings'
 
 function App() {
   const [view, setView] = useState('landing')
@@ -13,12 +14,11 @@ function App() {
         view={view}
         onLogoClick={() => setView('landing')}
         onEnter={() => setView('dashboard')}
+        onSettings={() => setView('settings')}
       />
-      {view === 'landing' ? (
-        <LandingPage onEnter={() => setView('dashboard')} />
-      ) : (
-        <Dashboard onHome={() => setView('landing')} />
-      )}
+      {view === 'landing'  && <LandingPage onEnter={() => setView('dashboard')} />}
+      {view === 'dashboard' && <Dashboard />}
+      {view === 'settings'  && <Settings />}
     </PreferencesProvider>
   )
 }
