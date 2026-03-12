@@ -1,0 +1,133 @@
+.weather {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.25rem;
+}
+
+/* ── Setup state ── */
+.weather--setup {
+  gap: 1rem;
+}
+
+.weather__prompt {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.weather__form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.weather__input {
+  font-family: inherit;
+  font-size: 0.875rem;
+  padding: 0.45rem 0.75rem;
+  border: 1.5px solid #e8e8e8;
+  border-radius: 8px;
+  outline: none;
+  width: 120px;
+  transition: border-color 0.2s;
+}
+
+.weather__input:focus {
+  border-color: #ffe342;
+}
+
+.weather__submit {
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.45rem 0.9rem;
+  background: #ffe342;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.weather__submit:hover {
+  background: #88e036;
+}
+
+/* ── Loading / error states ── */
+.weather--state {
+  font-size: 0.875rem;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.weather--error p {
+  color: #e05555;
+  font-size: 0.825rem;
+}
+
+/* ── Weather display ── */
+.weather__city {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.weather__main {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.weather__icon {
+  width: 60px;
+  height: 60px;
+}
+
+.weather__temp {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  line-height: 1;
+}
+
+.weather__desc {
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: capitalize;
+}
+
+.weather__unit-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.weather__unit-btn {
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #bbb;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s;
+}
+
+.weather__unit-btn:hover {
+  color: #888;
+}
+
+.weather__unit-btn--active {
+  color: #1a1a1a;
+}
+
+.weather__unit-sep {
+  font-size: 0.7rem;
+  color: #ddd;
+}
