@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import productivityImg from '../../assets/images/Productivity.jpg'
 import './LandingPage.css'
 
 // ─── Data ──────────────────────────────────────────────────────────────────
@@ -142,8 +143,8 @@ function LandingPage({ onEnter }) {
               weather, your tasks, your notes, and your news, all in one flow.
             </p>
           </div>
-          <div className="about__image" aria-hidden="true">
-            <span className="about__image-label">Image coming soon</span>
+          <div className="about__image">
+            <img src={productivityImg} alt="Daiflo dashboard preview" className="about__img" />
           </div>
         </section>
 
