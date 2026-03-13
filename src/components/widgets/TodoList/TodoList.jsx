@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useStoredData } from '../../../hooks/useStoredData'
 import './TodoList.css'
-
-const STORAGE_KEY = 'daiflo_todos'
 
 function TodoItem({ task, editMode, onToggle, onDelete, onUpdate }) {
   function handleKeyDown(e) {
@@ -46,42 +45,30 @@ function TodoItem({ task, editMode, onToggle, onDelete, onUpdate }) {
 }
 
 function TodoList() {
-  const [tasks, setTasks] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
-    } catch {
-      return []
-    }
-  })
-  const [editMode, setEditMode] = useState(false)
-  const [newTaskText, setNewTaskText] = useState('')
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))
-  }, [tasks])
+  const [tasks, persistTasks] = useStoredData(
+    'daiflo_todos', 'todos', [], JSON.parse, JSON.stringify
+  )
+  const [editMode,     setEditMode]     = useState(false)
+  const [newTaskText,  setNewTaskText]  = useState('')
 
   function addTask(e) {
     e.preventDefault()
     const text = newTaskText.trim()
     if (!text) return
-    setTasks((prev) => [...prev, { id: Date.now(), text, completed: false }])
+    persistTasks([...tasks, { id: Date.now(), text, completed: false }])
     setNewTaskText('')
   }
 
   function toggleTask(id) {
-    setTasks((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t))
-    )
+    persistTasks(tasks.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)))
   }
 
   function deleteTask(id) {
-    setTasks((prev) => prev.filter((t) => t.id !== id))
+    persistTasks(tasks.filter((t) => t.id !== id))
   }
 
   function updateTask(id, text) {
-    setTasks((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, text } : t))
-    )
+    persistTasks(tasks.map((t) => (t.id === id ? { ...t, text } : t)))
   }
 
   return (
@@ -97,9 +84,7 @@ function TodoList() {
       </div>
 
       <ul className="todo__list" role="list">
-        {tasks.length === 0 && (
-          <li className="todo__empty">No tasks yet</li>
-        )}
+        {tasks.length === 0 && <li className="todo__empty">No tasks yet</li>}
         {tasks.map((task) => (
           <li key={task.id}>
             <TodoItem
@@ -122,9 +107,7 @@ function TodoList() {
             value={newTaskText}
             onChange={(e) => setNewTaskText(e.target.value)}
           />
-          <button className="todo__add-btn" type="submit" aria-label="Add task">
-            +
-          </button>
+          <button className="todo__add-btn" type="submit" aria-label="Add task">+</button>
         </form>
       )}
     </div>

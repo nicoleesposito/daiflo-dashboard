@@ -180,6 +180,37 @@
   max-width: 160px;
 }
 
+/* ── Guest note ── */
+.settings__guest-note {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* ── Footer / logout ── */
+.settings__footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.settings__logout-btn {
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #e05555;
+  background: transparent;
+  border: 1.5px solid #e05555;
+  border-radius: 50px;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.settings__logout-btn:hover {
+  background: #e05555;
+  color: #fff;
+}
+
 /* ── Actions ── */
 .settings__actions {
   margin-top: 1.5rem;

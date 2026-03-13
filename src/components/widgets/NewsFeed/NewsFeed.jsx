@@ -1,14 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { fetchRssFeed } from '../../../services/rssApi'
+import { useStoredData } from '../../../hooks/useStoredData'
 import './NewsFeed.css'
-
-const STORAGE_KEY = 'daiflo_news_category'
-
-function stripHtml(html) {
-  const tmp = document.createElement('div')
-  tmp.innerHTML = html
-  return tmp.textContent || tmp.innerText || ''
-}
 
 const CATEGORIES = [
   { id: 'technology', label: 'Technology', feed: 'http://feeds.bbci.co.uk/news/technology/rss.xml' },
@@ -17,17 +10,22 @@ const CATEGORIES = [
   { id: 'science',   label: 'Science',     feed: 'http://feeds.bbci.co.uk/news/science_and_environment/rss.xml' },
 ]
 
+function stripHtml(html) {
+  const tmp = document.createElement('div')
+  tmp.innerHTML = html
+  return tmp.textContent || tmp.innerText || ''
+}
+
 function NewsFeed() {
-  const [categoryId, setCategoryId] = useState(
-    () => localStorage.getItem(STORAGE_KEY) || 'technology'
-  )
-  const [items, setItems]     = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError]     = useState(null)
+  const [categoryId, persistCategory] = useStoredData('daiflo_news_category', 'newsCategory', 'technology')
+
+  const [items,     setItems]     = useState([])
+  const [loading,   setLoading]   = useState(false)
+  const [error,     setError]     = useState(null)
   const [popupOpen, setPopupOpen] = useState(false)
 
   const popupRef = useRef(null)
-  const category = CATEGORIES.find((c) => c.id === categoryId)
+  const category = CATEGORIES.find((c) => c.id === categoryId) || CATEGORIES[0]
 
   useEffect(() => {
     let cancelled = false
@@ -49,7 +47,6 @@ function NewsFeed() {
     return () => { cancelled = true }
   }, [categoryId])
 
-  // Close popup on outside click
   useEffect(() => {
     if (!popupOpen) return
     function handleClick(e) {
@@ -62,8 +59,7 @@ function NewsFeed() {
   }, [popupOpen])
 
   function selectCategory(id) {
-    localStorage.setItem(STORAGE_KEY, id)
-    setCategoryId(id)
+    persistCategory(id)
     setPopupOpen(false)
   }
 
@@ -79,9 +75,7 @@ function NewsFeed() {
             aria-haspopup="listbox"
           >
             <span>{category.label}</span>
-            <span className={`news__chevron${popupOpen ? ' news__chevron--open' : ''}`}>
-              ▾
-            </span>
+            <span className={`news__chevron${popupOpen ? ' news__chevron--open' : ''}`}>▾</span>
           </button>
 
           {popupOpen && (
@@ -137,15 +131,10 @@ function NewsFeed() {
                   {item.title}
                 </a>
                 {item.description && (
-                  <p className="news-item__summary">
-                    {stripHtml(item.description)}
-                  </p>
+                  <p className="news-item__summary">{stripHtml(item.description)}</p>
                 )}
                 <time className="news-item__date">
-                  {new Date(item.pubDate).toLocaleDateString(undefined, {
-                    month: 'short',
-                    day: 'numeric',
-                  })}
+                  {new Date(item.pubDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
                 </time>
               </div>
             </li>

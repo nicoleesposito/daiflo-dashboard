@@ -1,24 +1,21 @@
 import { useState, useEffect } from 'react'
 import { fetchWeatherByZip } from '../../../services/weatherApi'
+import { useStoredData } from '../../../hooks/useStoredData'
 import './Weather.css'
-
-const STORAGE_KEY = 'daiflo_zip'
-const UNIT_KEY    = 'daiflo_temp_unit'
 
 function toC(f) { return Math.round((f - 32) * 5 / 9) }
 
 function Weather() {
-  const [zip, setZip] = useState(() => localStorage.getItem(STORAGE_KEY) || '')
-  const [input, setInput] = useState('')
+  const [zip,  persistZip]  = useStoredData('daiflo_zip',       'zip',      '')
+  const [unit, persistUnit] = useStoredData('daiflo_temp_unit', 'tempUnit', 'F')
+
+  const [input,   setInput]   = useState('')
   const [weather, setWeather] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [unit, setUnit] = useState(() => localStorage.getItem(UNIT_KEY) || 'F')
+  const [error,   setError]   = useState(null)
 
   function toggleUnit() {
-    const next = unit === 'F' ? 'C' : 'F'
-    localStorage.setItem(UNIT_KEY, next)
-    setUnit(next)
+    persistUnit(unit === 'F' ? 'C' : 'F')
   }
 
   useEffect(() => {
@@ -46,8 +43,7 @@ function Weather() {
     e.preventDefault()
     const trimmed = input.trim()
     if (!trimmed) return
-    localStorage.setItem(STORAGE_KEY, trimmed)
-    setZip(trimmed)
+    persistZip(trimmed)
     setInput('')
   }
 
@@ -71,9 +67,7 @@ function Weather() {
     )
   }
 
-  if (loading) {
-    return <div className="weather weather--state">Loading...</div>
-  }
+  if (loading) return <div className="weather weather--state">Loading...</div>
 
   if (error) {
     return (

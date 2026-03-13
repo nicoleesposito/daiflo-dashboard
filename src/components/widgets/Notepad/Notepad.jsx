@@ -1,15 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useStoredData } from '../../../hooks/useStoredData'
 import './Notepad.css'
-
-const STORAGE_KEY = 'daiflo_notes'
-
-function loadNotes() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
-  } catch {
-    return []
-  }
-}
 
 function TrashIcon() {
   return (
@@ -24,33 +15,29 @@ function TrashIcon() {
 }
 
 function Notepad() {
-  const [notes, setNotes] = useState(loadNotes)
-  const [activeId, setActiveId] = useState(() => loadNotes()[0]?.id || null)
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [notes, persistNotes] = useStoredData(
+    'daiflo_notes', 'notes', [], JSON.parse, JSON.stringify
+  )
+  const [activeId,     setActiveId]     = useState(() => notes[0]?.id || null)
+  const [sidebarOpen,  setSidebarOpen]  = useState(true)
 
   const activeNote = notes.find((n) => n.id === activeId) || null
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(notes))
-  }, [notes])
-
   function createNote() {
     const note = { id: Date.now(), title: '', body: '', updatedAt: Date.now() }
-    setNotes((prev) => [note, ...prev])
+    persistNotes([note, ...notes])
     setActiveId(note.id)
   }
 
   function deleteNote() {
     const remaining = notes.filter((n) => n.id !== activeId)
-    setNotes(remaining)
+    persistNotes(remaining)
     setActiveId(remaining[0]?.id || null)
   }
 
   function updateNote(changes) {
-    setNotes((prev) =>
-      prev.map((n) =>
-        n.id === activeId ? { ...n, ...changes, updatedAt: Date.now() } : n
-      )
+    persistNotes(
+      notes.map((n) => (n.id === activeId ? { ...n, ...changes, updatedAt: Date.now() } : n))
     )
   }
 
@@ -69,9 +56,7 @@ function Notepad() {
 
         {sidebarOpen && (
           <div className="notepad__sidebar-content">
-            <button className="notepad__new-btn" onClick={createNote}>
-              + New
-            </button>
+            <button className="notepad__new-btn" onClick={createNote}>+ New</button>
             <ul className="notepad__note-list" role="list">
               {notes.length === 0 && (
                 <li className="notepad__note-empty">No notes yet</li>
