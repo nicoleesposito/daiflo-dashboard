@@ -1,23 +1,36 @@
 # Daiflo
 
 ## Project Description
-Daiflo is a personal productivity dashboard designed to bring essential daily tools into one organized interface. The application allows users to quickly access useful information and manage everyday tasks without switching between multiple apps. Through a clean and responsive layout, users can view current weather conditions, manage a to-do list, read the latest news headlines from RSS feeds, and write quick notes. Daiflo also includes a preferences area where users can manage their profile information and customize settings such as display preferences. The goal of the project is to create a simple, efficient, and user-friendly dashboard that helps users stay informed, organized, and focused throughout their day.
+Daiflo is a personal productivity dashboard that brings essential daily tools into one place. Users can check the weather, manage a to-do list, read the latest news, and write notes all from a single interface. The app supports both guest mode with localStorage and full account login with cloud data sync through Firebase.
 
-## Planned Features
-Weather Widget <br>
-Displays current weather information for a selected location, including temperature, conditions, and a weather icon.
+## Technologies Used
+- React <br>
+- Vite <br>
+- Firebase Authentication <br>
+- Firebase Firestore <br>
+- OpenWeatherMap API <br>
+- RSS2JSON API <br>
+- CSS3 <br>
 
-Todo List <br>
-Allows users to create, edit, complete, and delete tasks to help organize daily responsibilities.
+## Setup Instructions
+1. Clone the repository <br>
+2. Run "npm install" <br>
+3. Create a ".env" file in the project root with the following variables: <br>
 
-News Feed <br>
-Displays recent news headlines using an RSS feed, allowing users to quickly view and open articles from external sources.
+VITE_FIREBASE_API_KEY= <br>
+VITE_FIREBASE_AUTH_DOMAIN= <br>
+VITE_FIREBASE_PROJECT_ID= <br>
+VITE_FIREBASE_STORAGE_BUCKET= <br>
+VITE_FIREBASE_MESSAGING_SENDER_ID= <br>
+VITE_FIREBASE_APP_ID= <br>
+VITE_WEATHER_API_KEY= <br>
 
-Notepad <br>
-Provides a simple space for users to write and save notes, reminders, or ideas.
+4. Run "npm run dev" to start the development server <br>
 
-Preferences Area <br>
-Allows users to manage profile information and customize settings such as dark mode or other display preferences.
+## Known Bugs & Limitations
+- The weather widget only supports US zip codes. <br>
+- New OpenWeatherMap API keys can take up to 2 hours to activate, so the weather widget will show an error until the key is live. <br>
+- Dark mode does not apply to the landing page by design, but the toggle state still persists across sessions. <br>
 
-## Tech Stack
-Daiflo is built using React and traditional CSS to create a responsive and interactive user interface. Firebase Authentication will eventually be used to handle user sign-up and login, while Firebase Firestore will store user data such as tasks, notes, and preferences. External APIs will be used to provide dynamic content, including an API for weather information and an RSS-to-JSON service for displaying news headlines.
+## What I Learned
+Working with AI as a development tool taught me that the quality of what gets built depends a lot on how clearly you can describe what you want before any code is written. I got better results by planning features out loud first and only asking for code once the approach was agreed on. I also learned that testing each feature right after it was built was important because a few bugs only showed up when the features were used together, like dark mode affecting pages it wasn't supposed to, or user data not switching to the cloud after login. The biggest shift was learning to treat AI output as a starting point rather than a finished answer, which meant actually reading and testing what was generated instead of just moving on.
