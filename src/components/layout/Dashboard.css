@@ -30,3 +30,20 @@
 .widget--notes {
   grid-area: 2 / 2 / 5 / 4;
 }
+
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: auto;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  .widget--weather,
+  .widget--todo,
+  .widget--news,
+  .widget--notes {
+    grid-area: auto;
+  }
+}

@@ -265,3 +265,36 @@
 .settings__save-btn:hover {
   background: #88e036;
 }
+
+@media (max-width: 768px) {
+  .settings {
+    padding: 1.5rem 1rem;
+  }
+
+  .settings__section {
+    padding: 1.25rem 1rem;
+  }
+
+  .settings__field {
+    grid-template-columns: 1fr;
+  }
+
+  .settings__field-label {
+    margin-bottom: 0.25rem;
+  }
+
+  .settings__zip-form .settings__field-input {
+    max-width: 100%;
+  }
+
+  .settings__action-btns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .settings__cancel-btn,
+  .settings__save-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
