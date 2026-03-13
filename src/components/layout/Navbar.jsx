@@ -9,7 +9,7 @@ function GearIcon() {
   )
 }
 
-function Navbar({ view, onLogoClick, onEnter, onSettings }) {
+function Navbar({ view, onLogoClick, onEnter, onSettings, onDashboard }) {
   return (
     <nav className="navbar" aria-label="Main navigation">
       <button className="navbar__brand" onClick={onLogoClick} aria-label="Go to home">
@@ -22,10 +22,15 @@ function Navbar({ view, onLogoClick, onEnter, onSettings }) {
             Open Dashboard
           </button>
         )}
-        {view !== 'landing' && (
+        {view === 'dashboard' && (
           <button className="navbar__settings" onClick={onSettings} aria-label="Settings">
             <GearIcon />
             <span>Settings</span>
+          </button>
+        )}
+        {view === 'settings' && (
+          <button className="navbar__settings" onClick={onDashboard} aria-label="Back to dashboard">
+            <span>← Dashboard</span>
           </button>
         )}
       </div>

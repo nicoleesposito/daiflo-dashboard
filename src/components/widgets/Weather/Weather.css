@@ -16,7 +16,7 @@
 .weather__prompt {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--text);
 }
 
 .weather__form {
@@ -28,10 +28,12 @@
   font-family: inherit;
   font-size: 0.875rem;
   padding: 0.45rem 0.75rem;
-  border: 1.5px solid #e8e8e8;
+  border: 1.5px solid var(--border);
   border-radius: 8px;
   outline: none;
   width: 120px;
+  background: var(--input-bg);
+  color: var(--text);
   transition: border-color 0.2s;
 }
 
@@ -58,7 +60,7 @@
 /* ── Loading / error states ── */
 .weather--state {
   font-size: 0.875rem;
-  color: #aaa;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
@@ -71,7 +73,7 @@
 .weather__city {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #888;
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -90,13 +92,13 @@
 .weather__temp {
   font-size: 2rem;
   font-weight: 800;
-  color: #1a1a1a;
+  color: var(--text);
   line-height: 1;
 }
 
 .weather__desc {
   font-size: 0.8rem;
-  color: #888;
+  color: var(--text-muted);
   text-transform: capitalize;
 }
 
@@ -111,7 +113,7 @@
   font-family: inherit;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #bbb;
+  color: var(--text-muted);
   background: none;
   border: none;
   cursor: pointer;
@@ -120,14 +122,14 @@
 }
 
 .weather__unit-btn:hover {
-  color: #888;
+  color: var(--text);
 }
 
 .weather__unit-btn--active {
-  color: #1a1a1a;
+  color: var(--text);
 }
 
 .weather__unit-sep {
   font-size: 0.7rem;
-  color: #ddd;
+  color: var(--border);
 }

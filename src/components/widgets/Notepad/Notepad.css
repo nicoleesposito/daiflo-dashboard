@@ -12,7 +12,7 @@
   width: 220px;
   min-width: 220px;
   transition: width 0.2s ease, min-width 0.2s ease;
-  border-right: 1px solid #e8e8e8;
+  border-right: 1px solid var(--border);
 }
 
 .notepad__sidebar--closed {
@@ -29,7 +29,7 @@
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: #bbb;
+  color: var(--text-muted);
   cursor: pointer;
   font-family: inherit;
   transition: color 0.15s;
@@ -38,7 +38,7 @@
 }
 
 .notepad__toggle:hover {
-  color: #888;
+  color: var(--text);
 }
 
 .notepad__sidebar-content {
@@ -54,7 +54,7 @@
   font-family: inherit;
   font-size: 0.775rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--text);
   background: #ffe34228;
   border: none;
   border-radius: 7px;
@@ -79,7 +79,7 @@
 
 .notepad__note-empty {
   font-size: 0.75rem;
-  color: #ccc;
+  color: var(--text-muted);
   padding: 0.25rem 0.1rem;
 }
 
@@ -90,7 +90,7 @@
   font-family: inherit;
   font-size: 0.8rem;
   font-weight: 500;
-  color: #555;
+  color: var(--text-muted);
   background: none;
   border: none;
   border-radius: 7px;
@@ -103,14 +103,14 @@
 }
 
 .notepad__note-item:hover {
-  background: #f5f5f5;
-  color: #1a1a1a;
+  background: var(--bg-hover);
+  color: var(--text);
 }
 
 .notepad__note-item--active {
-  background: #f5f5f5;
+  background: var(--bg-hover);
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--text);
 }
 
 /* ── Editor ── */
@@ -135,7 +135,7 @@
   font-family: inherit;
   font-size: 1rem;
   font-weight: 700;
-  color: #1a1a1a;
+  color: var(--text);
   border: none;
   outline: none;
   padding: 0;
@@ -144,7 +144,7 @@
 }
 
 .notepad__title::placeholder {
-  color: #ccc;
+  color: var(--text-muted);
 }
 
 .notepad__delete-btn {
@@ -155,7 +155,7 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #ccc;
+  color: var(--text-muted);
   padding: 0.2rem;
   border-radius: 6px;
   transition: color 0.15s, background 0.15s;
@@ -169,7 +169,7 @@
 .notepad__divider {
   flex-shrink: 0;
   border: none;
-  border-top: 1px solid #e8e8e8;
+  border-top: 1px solid var(--border);
   margin: 0.6rem 0;
 }
 
@@ -177,7 +177,7 @@
   flex: 1;
   font-family: inherit;
   font-size: 0.875rem;
-  color: #333;
+  color: var(--text);
   line-height: 1.7;
   border: none;
   outline: none;
@@ -188,7 +188,7 @@
 }
 
 .notepad__body::placeholder {
-  color: #ccc;
+  color: var(--text-muted);
 }
 
 /* ── Empty state ── */
@@ -203,5 +203,5 @@
 
 .notepad__no-note p {
   font-size: 0.875rem;
-  color: #bbb;
+  color: var(--text-muted);
 }

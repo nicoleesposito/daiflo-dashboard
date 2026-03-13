@@ -15,6 +15,7 @@ function App() {
         onLogoClick={() => setView('landing')}
         onEnter={() => setView('dashboard')}
         onSettings={() => setView('settings')}
+        onDashboard={() => setView('dashboard')}
       />
       {view === 'landing'  && <LandingPage onEnter={() => setView('dashboard')} />}
       {view === 'dashboard' && <Dashboard />}
