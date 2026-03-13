@@ -15,15 +15,14 @@ Daiflo is a personal productivity dashboard that brings essential daily tools in
 ## Setup Instructions
 1. Clone the repository <br>
 2. Run "npm install" <br>
-3. Create a ".env" file in the project root with the following variables: <br>
-
-VITE_FIREBASE_API_KEY= <br>
-VITE_FIREBASE_AUTH_DOMAIN= <br>
-VITE_FIREBASE_PROJECT_ID= <br>
-VITE_FIREBASE_STORAGE_BUCKET= <br>
-VITE_FIREBASE_MESSAGING_SENDER_ID= <br>
-VITE_FIREBASE_APP_ID= <br>
-VITE_WEATHER_API_KEY= <br>
+3. Create a ".env" file in the project root and add values for the following variables: <br>
+- VITE_FIREBASE_API_KEY <br>
+- VITE_FIREBASE_AUTH_DOMAIN <br>
+- VITE_FIREBASE_PROJECT_ID <br>
+- VITE_FIREBASE_STORAGE_BUCKET <br>
+- VITE_FIREBASE_MESSAGING_SENDER_ID <br>
+- VITE_FIREBASE_APP_ID <br>
+- VITE_WEATHER_API_KEY <br>
 
 4. Run "npm run dev" to start the development server <br>
 
