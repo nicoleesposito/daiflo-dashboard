@@ -1,0 +1,207 @@
+.notepad {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+/* ── Sidebar ── */
+.notepad__sidebar {
+  display: flex;
+  flex-direction: row;
+  width: 220px;
+  min-width: 220px;
+  transition: width 0.2s ease, min-width 0.2s ease;
+  border-right: 1px solid var(--border);
+}
+
+.notepad__sidebar--closed {
+  width: 28px;
+  min-width: 28px;
+  border-right: none;
+}
+
+.notepad__toggle {
+  flex-shrink: 0;
+  width: 28px;
+  align-self: flex-start;
+  padding: 0.1rem 0;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.15s;
+  text-align: center;
+  line-height: 1;
+}
+
+.notepad__toggle:hover {
+  color: var(--text);
+}
+
+.notepad__sidebar-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow: hidden;
+  padding-right: 0.5rem;
+}
+
+.notepad__new-btn {
+  font-family: inherit;
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: var(--text);
+  background: #ffe34228;
+  border: none;
+  border-radius: 7px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.notepad__new-btn:hover {
+  background: #ffe342;
+}
+
+.notepad__note-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.notepad__note-empty {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding: 0.25rem 0.1rem;
+}
+
+.notepad__note-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  border-radius: 7px;
+  padding: 0.4rem 0.5rem;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background 0.15s, color 0.15s;
+}
+
+.notepad__note-item:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.notepad__note-item--active {
+  background: var(--bg-hover);
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ── Editor ── */
+.notepad__editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-left: 1rem;
+}
+
+.notepad__editor-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.notepad__title {
+  flex: 1;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+  min-width: 0;
+}
+
+.notepad__title::placeholder {
+  color: var(--text-muted);
+}
+
+.notepad__delete-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  padding: 0.2rem;
+  border-radius: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.notepad__delete-btn:hover {
+  color: #e05555;
+  background: #fff0f0;
+}
+
+.notepad__divider {
+  flex-shrink: 0;
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0.6rem 0;
+}
+
+.notepad__body {
+  flex: 1;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--text);
+  line-height: 1.7;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+  width: 100%;
+  padding: 0;
+}
+
+.notepad__body::placeholder {
+  color: var(--text-muted);
+}
+
+/* ── Empty state ── */
+.notepad__no-note {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.notepad__no-note p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
