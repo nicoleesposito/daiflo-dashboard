@@ -26,6 +26,40 @@ Daiflo is a personal productivity dashboard that brings essential daily tools in
 
 4. Run "npm run dev" to start the development server <br>
 
+## Architecture Overview
+
+### Frontend
+- React and Vite app with state-based navigation
+- "AuthProvider" manages Firebase auth state across the app
+- "PreferencesProvider" manages dark mode toggle and persistence
+- The "useStoredData" hook routes widget data to Firestore for logged-in users and localStorage for guests
+- Weather data is fetched from the OpenWeatherMap API
+- News feed is fetched from the RSS2JSON API
+
+### Backend
+- Firebase Authentication handles sign up, login, and session persistence
+- Firebase Firestore stores per-user data
+- Firebase is called directly from the browser through the Firebase JS SDK
+- Hosted on Netlify with Firebase credentials supplied as environment variables
+
+---
+
+## Database Structure
+
+Firestore stores one document per user under "users/{uid}" with the following fields:
+
+- "firstName" - account first name
+- "lastName" - account last name
+- "zip" - weather widget zip code
+- "tempUnit" - temperature unit, either "F" or "C"
+- "newsCategory" - selected news category (e.g. "technology")
+- "todos" - array of to-do items "{ id, text, done }"
+- "notes" - array of notes "{ id, title, body }"
+
+Guest users have no Firestore document. Their data is stored in localStorage.
+
+---
+
 ## Known Bugs & Limitations
 - The weather widget only supports US zip codes. <br>
 - New OpenWeatherMap API keys can take up to 2 hours to activate, so the weather widget will show an error until the key is live. <br>
