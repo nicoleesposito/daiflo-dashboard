@@ -42,9 +42,7 @@ Daiflo is a personal productivity dashboard that brings essential daily tools in
 - Firebase is called directly from the browser through the Firebase JS SDK
 - Hosted on Netlify with Firebase credentials supplied as environment variables
 
----
-
-## Database Structure
+### Database Structure
 
 Firestore stores one document per user under "users/{uid}" with the following fields:
 
