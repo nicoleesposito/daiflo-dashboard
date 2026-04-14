@@ -38,7 +38,7 @@ Firebase Firestore caches the full result (summary + Wikipedia card) keyed by a 
 
 --
 
-# Running API in Daiflo
+### Running API in Daiflo
 To run the AI Summarization feature in Dailo, simply create a new note and then press the "Summarize" button to run the process. Here is an example note to test out full functionality of the feature:
 
 - Title: CRISPER Notes <br>
