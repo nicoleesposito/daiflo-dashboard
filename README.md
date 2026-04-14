@@ -1,25 +1,31 @@
-# Daiflo
+# Daiflo — AI Summarization Feature
 
-## Project Description
-Daiflo is a personal productivity dashboard that brings essential daily tools into one place. Users can check the weather, manage a to-do list, read the latest news, and write notes all from a single interface. The app supports both guest mode with localStorage and full account login with cloud data sync through Firebase.
+## What It Does
 
----
+The Notepad widget includes a Summarize button that analyzes the note's content using three coordinated APIs:
 
-## Technologies Used
-- React <br>
-- Vite <br>
-- Firebase Authentication <br>
-- Firebase Firestore <br>
-- OpenWeatherMap API <br>
-- RSS2JSON API <br>
-- CSS3 <br>
+OpenAI API streams a summary of the note progressively to the UI as chunks arrive using gpt-4o-mini. In the same prompt, it extracts the single most important named topic from the note (a person, place, technology, event, etc.). If no clear topic exists, the topic step is skipped entirely.
+<br>
+Wikipedia REST API fetches a short plain-English definition for the extracted topic and displays it as a small card beneath the summary with a link to the full article. If Wikipedia returns a bad result, the card doesn't display under the AI summary.
+<br>
+Firebase Firestore caches the full result (summary + Wikipedia card) keyed by a content hash of the note body. For logged-in users the cache lives in Firestore, and for guests it falls back to localStorage. Cache expires after 24 hours, and a cache hit skips both OpenAI and Wikipedia entirely.
 
 ---
 
-## Setup Instructions
+## APIs / Services Used
+
+- OpenAI API: summarization and topic extraction with streaming through gpt-4o-mini <br>
+- Wikipedia REST API — topic definitions <br>
+- Firebase Firestore — persistent summary cache <br>
+
+---
+
+## How to Run / Set up instructions
+
 1. Clone the repository <br>
 2. Run "npm install" <br>
 3. Create a ".env" file in the project root and add values for the following variables: <br>
+
 - VITE_FIREBASE_API_KEY <br>
 - VITE_FIREBASE_AUTH_DOMAIN <br>
 - VITE_FIREBASE_PROJECT_ID <br>
@@ -30,46 +36,10 @@ Daiflo is a personal productivity dashboard that brings essential daily tools in
 
 4. Run "npm run dev" to start the development server <br>
 
----
+--
 
-## Architecture Overview
+# Running API in Daiflo
+To run the AI Summarization feature in Dailo, simply create a new note and then press the "Summarize" button to run the process. Here is an example note to test out full functionality of the feature:
 
-### Frontend
-- React and Vite app with state-based navigation
-- "AuthProvider" manages Firebase auth state across the app
-- "PreferencesProvider" manages dark mode toggle and persistence
-- The "useStoredData" hook routes widget data to Firestore for logged-in users and localStorage for guests
-- Weather data is fetched from the OpenWeatherMap API
-- News feed is fetched from the RSS2JSON API
-
-### Backend
-- Firebase Authentication handles sign up, login, and session persistence
-- Firebase Firestore stores per-user data
-- Firebase is called directly from the browser through the Firebase JS SDK
-- Hosted on Netlify with Firebase credentials supplied as environment variables
-
-### Database Structure
-
-Firestore stores one document per user under "users/{uid}" with the following fields:
-
-- "firstName" - account first name
-- "lastName" - account last name
-- "zip" - weather widget zip code
-- "tempUnit" - temperature unit, either "F" or "C"
-- "newsCategory" - selected news category (e.g. "technology")
-- "todos" - array of to-do items "{ id, text, done }"
-- "notes" - array of notes "{ id, title, body }"
-
-Guest users have no Firestore document. Their data is stored in localStorage.
-
----
-
-## Known Bugs & Limitations
-- The weather widget only supports US zip codes. <br>
-- New OpenWeatherMap API keys can take up to 2 hours to activate, so the weather widget will show an error until the key is live. <br>
-- Dark mode does not apply to the landing page by design, but the toggle state still persists across sessions. <br>
-
----
-
-## What I Learned
-Working with AI as a development tool taught me that the quality of what gets built depends a lot on how clearly you can describe what you want before any code is written. I got better results by planning features out loud first and only asking for code once the approach was agreed on. I also learned that testing each feature right after it was built was important because a few bugs only showed up when the features were used together, like dark mode affecting pages it wasn't supposed to, or user data not switching to the cloud after login. The biggest shift was learning to treat AI output as a starting point rather than a finished answer, which meant actually reading and testing what was generated instead of just moving on.
+- Title: CRISPER Notes <br>
+- Body: Watched a lecture today about using CRISPR in treating sickle cell disease. The researcher mentioned they were able to edit the BCL11A gene to reactivate fetal hemoglobin production, essentially bypassing the defective adult hemoglobin. What's interesting is that this doesn't fully cure the disease but manages it — patients still need to monitor for complications. The trial results showed that around 90% of patients had no severe pain crises after treatment. Cost is still a massive barrier, estimated at $2 million per patient. Need to look into whether insurance covers any of this and what the regulatory timeline looks like for wider approval.
