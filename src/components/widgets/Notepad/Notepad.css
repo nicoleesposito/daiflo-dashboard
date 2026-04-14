@@ -147,6 +147,36 @@
   color: var(--text-muted);
 }
 
+/* ── Summarize button ── */
+.notepad__summarize-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+
+.notepad__summarize-btn:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--text-muted);
+  background: var(--bg-hover);
+}
+
+.notepad__summarize-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
 .notepad__delete-btn {
   flex-shrink: 0;
   display: flex;
@@ -185,10 +215,116 @@
   background: transparent;
   width: 100%;
   padding: 0;
+  min-height: 60px;
 }
 
 .notepad__body::placeholder {
   color: var(--text-muted);
+}
+
+/* ── Summary Panel ── */
+.notepad__summary-panel {
+  flex-shrink: 0;
+  max-height: 42%;
+  overflow-y: auto;
+  border-top: 1px solid var(--border);
+  padding: 0.65rem 0 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.notepad__summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notepad__summary-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.notepad__summary-close {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0 0.1rem;
+  transition: color 0.15s;
+}
+
+.notepad__summary-close:hover {
+  color: var(--text);
+}
+
+.notepad__summary-text {
+  font-size: 0.825rem;
+  color: var(--text);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.notepad__summary-error {
+  font-size: 0.8rem;
+  color: #e05555;
+  margin: 0;
+}
+
+/* Blinking cursor shown while streaming */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.notepad__summary-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  background: var(--text-muted);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 0.8s step-start infinite;
+}
+
+/* ── Wikipedia Card ── */
+.notepad__wiki-card {
+  border-top: 1px solid var(--border);
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.notepad__wiki-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.notepad__wiki-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.notepad__wiki-title:hover {
+  text-decoration: underline;
+}
+
+.notepad__wiki-extract {
+  font-size: 0.775rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
 }
 
 /* ── Empty state ── */
