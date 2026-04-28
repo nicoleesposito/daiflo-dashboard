@@ -155,25 +155,23 @@
   gap: 0.3rem;
   font-family: inherit;
   font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  background: none;
-  border: 1px solid var(--border);
+  font-weight: 700;
+  color: #1a1a1a;
+  background: #ffe342;
+  border: none;
   border-radius: 6px;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.65rem;
   cursor: pointer;
-  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  transition: background 0.2s;
   white-space: nowrap;
 }
 
 .notepad__summarize-btn:hover:not(:disabled) {
-  color: var(--text);
-  border-color: var(--text-muted);
-  background: var(--bg-hover);
+  background: #88e036;
 }
 
 .notepad__summarize-btn:disabled {
-  opacity: 0.5;
+  opacity: 0.55;
   cursor: default;
 }
 

@@ -10,25 +10,60 @@
 }
 
 .widget {
+  position: relative;
   background: var(--surface);
   border-radius: 14px;
   padding: 1.25rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-.widget--weather {
-  grid-area: 1 / 1 / 2 / 2;
+/* ── Grid slot positions ── */
+.widget--slot-0 { grid-area: 1 / 1 / 2 / 2; }
+.widget--slot-1 { grid-area: 1 / 2 / 2 / 4; }
+.widget--slot-2 { grid-area: 2 / 1 / 5 / 2; }
+.widget--slot-3 { grid-area: 2 / 2 / 5 / 4; }
+
+/* ── Dragging state ── */
+.widget--dragging {
+  opacity: 0.5;
+  z-index: 10;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
 }
 
-.widget--todo {
-  grid-area: 1 / 2 / 2 / 4;
+/* ── Drag handle ── */
+.widget__drag-handle {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  color: var(--border);
+  cursor: grab;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s, background 0.15s;
+  z-index: 1;
+  padding: 0;
+  touch-action: none;
 }
 
-.widget--news {
-  grid-area: 2 / 1 / 5 / 2;
+.widget:hover .widget__drag-handle {
+  opacity: 1;
 }
 
-.widget--notes {
-  grid-area: 2 / 2 / 5 / 4;
+.widget__drag-handle:hover {
+  color: var(--text-muted);
+  background: var(--bg-hover);
+}
+
+.widget__drag-handle:active {
+  cursor: grabbing;
 }
 
 @media (max-width: 768px) {
@@ -40,10 +75,10 @@
     padding: 1rem;
   }
 
-  .widget--weather,
-  .widget--todo,
-  .widget--news,
-  .widget--notes {
+  .widget--slot-0,
+  .widget--slot-1,
+  .widget--slot-2,
+  .widget--slot-3 {
     grid-area: auto;
   }
 }

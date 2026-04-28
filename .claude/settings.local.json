@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node -e \"const {GoogleGenerativeAI} = require\\(''./node_modules/@google/generative-ai/dist/index.js''\\); const genAI = new GoogleGenerativeAI\\(''test''\\); const model = genAI.getGenerativeModel\\({ model: ''gemini-1.5-flash'' }\\); console.log\\(''model methods:'', Object.getOwnPropertyNames\\(Object.getPrototypeOf\\(model\\)\\)\\)\")"
+      "Bash(node -e \"const {GoogleGenerativeAI} = require\\(''./node_modules/@google/generative-ai/dist/index.js''\\); const genAI = new GoogleGenerativeAI\\(''test''\\); const model = genAI.getGenerativeModel\\({ model: ''gemini-1.5-flash'' }\\); console.log\\(''model methods:'', Object.getOwnPropertyNames\\(Object.getPrototypeOf\\(model\\)\\)\\)\")",
+      "Bash(npm install *)",
+      "Bash(npm run *)"
     ]
   }
 }
